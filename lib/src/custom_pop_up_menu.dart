@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 enum PressType {
   longPress,
@@ -182,17 +181,19 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
         }
       },
     );
-    if (Platform.isIOS) {
-      return child;
-    } else {
-      return WillPopScope(
-        onWillPop: () {
-          _hideMenu();
-          return Future.value(true);
-        },
-        child: child,
-      );
-    }
+    return child;
+
+    // if (kIsIO) {
+    //   return child;
+    // } else {
+    //   return WillPopScope(
+    //     onWillPop: () {
+    //       _hideMenu();
+    //       return Future.value(true);
+    //     },
+    //     child: child,
+    //   );
+    // }
   }
 }
 
