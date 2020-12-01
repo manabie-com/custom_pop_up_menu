@@ -38,6 +38,7 @@ class CustomPopupMenu extends StatefulWidget {
     this.arrowSize = 10.0,
     this.horizontalMargin = 10.0,
     this.verticalMargin = 10.0,
+    this.shape = const RoundedRectangleBorder(),
   }) : assert(menuBuilder != null);
 
   final Widget child;
@@ -50,6 +51,8 @@ class CustomPopupMenu extends StatefulWidget {
   final double arrowSize;
   final CustomPopupMenuController controller;
   final Widget Function() menuBuilder;
+  final ShapeBorder shape;
+
   @override
   _CustomPopupMenuState createState() => _CustomPopupMenuState();
 }
@@ -167,10 +170,10 @@ class _CustomPopupMenuState extends State<CustomPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    var child = GestureDetector(
-      behavior: HitTestBehavior.translucent,
+    var child = RawMaterialButton(
       child: widget.child,
-      onTap: () {
+      shape: widget.shape,
+      onPressed: () {
         if (widget.pressType == PressType.singleClick) {
           _showMenu();
         }
